@@ -27,11 +27,6 @@ abstract class App::Base < ActionController::Base
     # response.headers["X-Request-ID"] = request_id
   end
 
-  @[AC::Route::Filter(:before_action)]
-  def set_date_header
-    response.headers["Date"] = HTTP.format_time(Time.utc)
-  end
-
   # covers no acceptable response format and not an acceptable post format
   @[AC::Route::Exception(AC::Route::NotAcceptable, status_code: HTTP::Status::NOT_ACCEPTABLE)]
   @[AC::Route::Exception(AC::Route::UnsupportedMediaType, status_code: HTTP::Status::UNSUPPORTED_MEDIA_TYPE)]
